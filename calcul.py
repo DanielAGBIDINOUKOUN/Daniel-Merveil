@@ -1,33 +1,39 @@
-nbr1 = float(input('Entrez le premier nombre : '))
-nbr2 = float(input('Entrez le deuxième nombre : '))
+nbr1 = float(input("Entrez le premier nombre : "))
+nbr2 = float(input("Entrez le deuxième nombre : "))
 
-for i in range(5):
+while True:
 
-    signe = input(
-        "Entrez le signe de l'opération :\n"
-        "1 pour l'addition\n"
-        "2 pour la soustraction\n"
-        "3 pour la multiplication\n"
-        "4 pour la division\n"
-        "0 pour quitter\n"
-    )
+    print("\n===== CALCULATRICE =====")
+    print("1 pour l'addition")
+    print("2 pour la soustraction")
+    print("3 pour la multiplication")
+    print("4 pour la division")
+    print("0 pour quitter")
+
+    signe = input("Entrez votre choix : ")
 
     if signe == "1":
-        print(nbr1 + nbr2)
-        
+        resultat = nbr1 + nbr2
+        print("Résultat :", resultat)
 
     elif signe == "2":
-        print(nbr1 - nbr2)
+        resultat = nbr1 - nbr2
+        print("Résultat :", resultat)
 
     elif signe == "3":
-        print(nbr1 * nbr2)
+        resultat = nbr1 * nbr2
+        print("Résultat :", resultat)
 
     elif signe == "4":
-        print(nbr1 / nbr2)
+
+        if nbr2 != 0:
+            resultat = nbr1 / nbr2
+            print("Résultat :", resultat)
+        else:
+            print("Impossible de diviser par zéro")
 
     elif signe == "0":
+        print("Programme terminé")
         break
-
     else:
         print("Choix invalide")
-        

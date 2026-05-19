@@ -1,9 +1,8 @@
-
 taches = []
 
 while True:
 
-    print("\n===== MENU =====")
+    print("\n===== GESTION DES TÂCHES =====")
     print("1. Ajouter une tâche")
     print("2. Afficher les tâches")
     print("3. Supprimer une tâche")
@@ -15,77 +14,96 @@ while True:
     # AJOUTER UNE TÂCHE
     if choix == "1":
 
-        tache = input("Entrez la tâche : ")
+        nombre = int(input("Combien de tâches voulez-vous ajouter ? "))
 
-        nouvelle_tache = {
-            "nom": tache,
-            "terminee": False
-        }
+        for i in range(nombre):
 
-        taches.append(nouvelle_tache)
+            nom_tache = input(f"Tâche {i + 1} : ").strip()
 
-        print("Tâche ajoutée avec succès")
+            if nom_tache == "":
+                print("La tâche ne peut pas être vide")
+
+            else:
+
+                nouvelle_tache = {
+                    "nom": nom_tache,
+                    "terminee": False
+                }
+
+                taches.append(nouvelle_tache)
+
+        print("\nTâche(s) ajoutée(s) avec succès")
 
     # AFFICHER LES TÂCHES
     elif choix == "2":
 
         if len(taches) == 0:
-            print("Aucune tâche disponible")
+
+            print("\nAucune tâche disponible")
 
         else:
 
             print("\n===== LISTE DES TÂCHES =====")
 
-            for i, tache in enumerate(taches):
+            for i, tache in enumerate(taches, start=1):
 
-                statut = "✅ Terminée" if tache["terminee"] else "❌ Non terminée"
+                statut = (
+                    "✅ Terminée"
+                    if tache["terminee"]
+                    else "❌ Non terminée"
+                )
 
-                print(f"{i + 1}. {tache['nom']} - {statut}")
+                print(f"{i}. {tache['nom']} - {statut}")
 
     # SUPPRIMER UNE TÂCHE
     elif choix == "3":
 
         if len(taches) == 0:
-            print("Aucune tâche à supprimer")
+
+            print("\nAucune tâche à supprimer")
 
         else:
 
-            numero = int(input("Numéro de la tâche à supprimer : "))
+            numero = int(input("Numéro de la tâche : "))
 
             if 1 <= numero <= len(taches):
 
-                supprimer = taches.pop(numero - 1)
+                tache_supprimee = taches.pop(numero - 1)
 
-                print("Tâche supprimée :", supprimer["nom"])
+                print(f"\nTâche supprimée : {tache_supprimee['nom']}")
 
             else:
-                print("Numéro invalide")
+
+                print("\nNuméro invalide")
 
     # MARQUER COMME TERMINÉE
     elif choix == "4":
 
         if len(taches) == 0:
-            print("Aucune tâche disponible")
+
+            print("\nAucune tâche disponible")
 
         else:
 
-            numero = int(input("Numéro de la tâche terminée : "))
+            numero = int(input("Numéro de la tâche : "))
 
             if 1 <= numero <= len(taches):
 
                 taches[numero - 1]["terminee"] = True
 
-                print("Tâche marquée comme terminée")
+                print("\nTâche marquée comme terminée")
 
             else:
-                print("Numéro invalide")
+
+                print("\nNuméro invalide")
 
     # QUITTER
     elif choix == "0":
 
-        print("Programme terminé")
+        print("\nProgramme terminé")
         break
 
-    # ERREUR
+    # CHOIX INVALIDE
     else:
-        print("Choix invalide")
+
+        print("\nChoix invalide")

@@ -2,8 +2,8 @@ etudiants = []
 
 while True:
 
-    print("\n===== MENU =====")
-    print("1. Ajouter un étudiant")
+    print("\n===== GESTION DES ÉTUDIANTS =====")
+    print("1. Ajouter des étudiants")
     print("2. Afficher les étudiants")
     print("3. Rechercher un étudiant")
     print("4. Supprimer un étudiant")
@@ -11,46 +11,55 @@ while True:
 
     choix = input("Entrez votre choix : ")
 
-    # AJOUTER
+    # AJOUTER DES ÉTUDIANTS
     if choix == "1":
 
-        nom = input("Nom : ")
-        prenom = input("Prénom : ")
-        age = int(input("Age : "))
-        filiere = input("Filière : ")
+        nombre = int(input("Combien d'étudiants voulez-vous ajouter ? "))
 
-        etudiant = {
-            "nom": nom,
-            "prenom": prenom,
-            "age": age,
-            "filiere": filiere
-        }
+        for i in range(nombre):
 
-        etudiants.append(etudiant)
+            print(f"\n===== Étudiant {i + 1} =====")
 
-        print("Étudiant ajouté avec succès")
+            nom = input("Nom : ").strip()
+            prenom = input("Prénom : ").strip()
+            age = int(input("Âge : "))
+            filiere = input("Filière : ").strip()
 
-    # AFFICHER
+            etudiant = {
+                "nom": nom,
+                "prenom": prenom,
+                "age": age,
+                "filiere": filiere
+            }
+
+            etudiants.append(etudiant)
+
+        print("\nÉtudiants ajoutés avec succès")
+
+    # AFFICHER LES ÉTUDIANTS
     elif choix == "2":
 
         if len(etudiants) == 0:
-            print("Aucun étudiant enregistré")
+
+            print("\nAucun étudiant enregistré")
 
         else:
-            print("\n===== LISTE DES ETUDIANTS =====")
 
-            for i, etudiant in enumerate(etudiants):
+            print("\n===== LISTE DES ÉTUDIANTS =====")
 
-                print(f"\nEtudiant {i + 1}")
+            for i, etudiant in enumerate(etudiants, start=1):
+
+                print(f"\nÉtudiant {i}")
+                print("-" * 20)
                 print("Nom :", etudiant["nom"])
-                print("Prénom :", etudiant["prenom"])   
-                print("Age :", etudiant["age"])
+                print("Prénom :", etudiant["prenom"])
+                print("Âge :", etudiant["age"])
                 print("Filière :", etudiant["filiere"])
 
-    # RECHERCHER
+    # RECHERCHER UN ÉTUDIANT
     elif choix == "3":
 
-        recherche = input("Entrez le nom de l'étudiant : ")
+        recherche = input("Entrez le nom de l'étudiant : ").strip()
 
         trouve = False
 
@@ -58,21 +67,23 @@ while True:
 
             if etudiant["nom"].lower() == recherche.lower():
 
-                print("\nEtudiant trouvé")
+                print("\n===== ÉTUDIANT TROUVÉ =====")
                 print("Nom :", etudiant["nom"])
                 print("Prénom :", etudiant["prenom"])
-                print("Age :", etudiant["age"])
+                print("Âge :", etudiant["age"])
                 print("Filière :", etudiant["filiere"])
 
                 trouve = True
+                break
 
-        if trouve == False:
-            print("Étudiant introuvable")
+        if not trouve:
 
-    # SUPPRIMER
+            print("\nÉtudiant introuvable")
+
+    # SUPPRIMER UN ÉTUDIANT
     elif choix == "4":
 
-        nom_supprimer = input("Entrez le nom à supprimer : ")
+        nom_supprimer = input("Entrez le nom à supprimer : ").strip()
 
         trouve = False
 
@@ -82,21 +93,22 @@ while True:
 
                 etudiants.remove(etudiant)
 
-                print("Étudiant supprimé")
+                print("\nÉtudiant supprimé avec succès")
+
                 trouve = True
                 break
 
-        if trouve == False:
-            print("Étudiant introuvable")
+        if not trouve:
+
+            print("\nÉtudiant introuvable")
 
     # QUITTER
     elif choix == "0":
 
-        print("Programme terminé")
+        print("\nProgramme terminé")
         break
 
-    # ERREUR
+    # CHOIX INVALIDE
     else:
-        print("Choix invalide")
-        
-        
+
+        print("\nChoix invalide")
